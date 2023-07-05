@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/konva@9.2.0/konva.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Konva Simple Window drawing</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="container"></div>
+    <script>
+
+      const stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: 'container',
+      });
+
+      const layer = new Konva.Layer();
+      stage.add(layer);
+
+      const rect = new Konva.Rect({
+        x: 50,
+        y: 50,
+        fill: 'blue',
+        height: 100,
+        width: 200
+      })
+
+      layer.add(rect)
+
+    </script>
+  </body>
+</html>
