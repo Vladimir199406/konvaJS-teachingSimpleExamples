@@ -27,15 +27,91 @@
       const layer = new Konva.Layer();
       stage.add(layer);
 
+      //rect
       const rect = new Konva.Rect({
         x: 50,
         y: 50,
         fill: 'blue',
         height: 100,
-        width: 200
+        width: 200,
+        stroke: 'orange',
+        strokeWidth: 8,
+        cornerRadius: 8,
+        opacity: 0.7,
+        draggable: true //drag and drop
       })
-
       layer.add(rect)
+
+      //circle
+      const circle = new Konva.Circle({
+        x: 350,
+        y: 90,
+        fill: "green",
+        radius: 50,
+      })
+      layer.add(circle)
+
+      //ring
+      const ring = new Konva.Ring({
+        x: 130,
+        y: 240,
+        fill: 'orange',
+        outerRadius: 50,
+        innerRadius: 25,
+      })
+      layer.add(ring)
+
+      //star
+      const star = new Konva.Star({
+        x: 350,
+        y: 240,
+        fill: 'yellow',
+        outerRadius: 50,
+        innerRadius: 20,
+        stroke: 'blue',
+        shadowColor: 'black',
+        shadowBlur: 10,
+        shadowOffset: {x: 10, y: 10},
+        shadowOpacity: 0.5,
+      })
+      layer.add(star)
+
+      //hexagon
+      const hexagon = new Konva.RegularPolygon({
+        x: 130,
+        y: 400,
+        fill: 'red',
+        radius: 50,
+        sides: 6,
+      })
+      layer.add(hexagon)
+
+      //line
+      const line = new Konva.Line({
+        x: 280,
+        y: 440,
+        stroke: 'purple',
+        strokeWidth: 8,
+        lineCap: 'round', //end of line, not corner
+        lineJoin: 'round', //corner of line
+        points: [0, 0, 150, 0, 75, -90],
+        closed: true, //make figure be closed (from lines to closed figure)
+        tension: -0.5, //make round lines
+        fill: 'pink'
+      })
+      layer.add(line)
+
+      //text
+      const text = new Konva.Text({
+        text: 'Hello, World!',
+        x: 50,
+        y: 500,
+        fill: 'navy',
+        fontSize: 36,
+        width: 300,
+        draggable: true,
+      })
+      layer.add(text)
 
     </script>
   </body>
