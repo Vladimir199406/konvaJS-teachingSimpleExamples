@@ -18,6 +18,7 @@
     <div id="container"></div>
     <script>
 
+      //main part
       const stage = new Konva.Stage({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -27,10 +28,22 @@
       const layer = new Konva.Layer();
       stage.add(layer);
 
-      //rect
-      const rect = new Konva.Rect({
+      //BLOCK#1
+      const text1 = new Konva.Text({
+        text: 'BLOCK1: Primary Figures Below',
         x: 50,
         y: 50,
+        fill: 'navy',
+        fontSize: 36,
+        width: 300,
+        draggable: true,
+      })
+      layer.add(text1)
+
+      //rect
+      const rect = new Konva.Rect({
+        x: 150,
+        y: 150,
         fill: 'blue',
         height: 100,
         width: 200,
@@ -44,8 +57,8 @@
 
       //circle
       const circle = new Konva.Circle({
-        x: 350,
-        y: 90,
+        x: 450,
+        y: 190,
         fill: "green",
         radius: 50,
       })
@@ -53,8 +66,8 @@
 
       //ring
       const ring = new Konva.Ring({
-        x: 130,
-        y: 240,
+        x: 230,
+        y: 340,
         fill: 'orange',
         outerRadius: 50,
         innerRadius: 25,
@@ -63,8 +76,8 @@
 
       //star
       const star = new Konva.Star({
-        x: 350,
-        y: 240,
+        x: 450,
+        y: 340,
         fill: 'yellow',
         outerRadius: 50,
         innerRadius: 20,
@@ -78,8 +91,8 @@
 
       //hexagon
       const hexagon = new Konva.RegularPolygon({
-        x: 130,
-        y: 400,
+        x: 230,
+        y: 500,
         fill: 'red',
         radius: 50,
         sides: 6,
@@ -88,8 +101,8 @@
 
       //line
       const line = new Konva.Line({
-        x: 280,
-        y: 440,
+        x: 380,
+        y: 540,
         stroke: 'purple',
         strokeWidth: 8,
         lineCap: 'round', //end of line, not corner
@@ -101,18 +114,57 @@
       })
       layer.add(line)
 
+      //BLOCK#2
       //text
-      const text = new Konva.Text({
-        text: 'Hello, World!',
+      const text2 = new Konva.Text({
+        text: 'BLOCK2: Event listeners',
         x: 50,
-        y: 500,
+        y: 700,
         fill: 'navy',
         fontSize: 36,
         width: 300,
         draggable: true,
       })
-      layer.add(text)
+      layer.add(text2)
 
+      const starEvent1 = new Konva.Star({
+        x: 240,
+        y: 850,
+        fill: 'yellow',
+        outerRadius: 80,
+        innerRadius: 32,
+        stroke: 'blue',
+        draggable: true
+      })
+      layer.add(starEvent1)
+
+      //click event below
+      starEvent1.on('click', () => {
+        starEvent1.fill('lightblue') //change color
+        console.log(starEvent1.fill()) //with no params getting color 'fill()'
+        starEvent1.off('click') //change 1 time
+      })
+
+
+      const starEvent2 = new Konva.Star({
+        x: 440,
+        y: 850,
+        fill: 'yellow',
+        outerRadius: 80,
+        innerRadius: 32,
+        stroke: 'blue',
+        draggable: true
+      })
+      layer.add(starEvent2)
+
+      //click event below
+      starEvent2.on('click', () => {
+        if (starEvent2.fill() === 'yellow') {
+          starEvent2.fill('lightblue')
+        } else {
+          starEvent2.fill('yellow')
+        }
+      })
     </script>
   </body>
 </html>
