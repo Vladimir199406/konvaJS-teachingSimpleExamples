@@ -203,6 +203,44 @@
         easing: Konva.Easings.EaseOut
       })
       tween.play()
+
+      //BLOCK#4
+      const text4 = new Konva.Text({
+        text: 'BLOCK4: Custom Animations (dynamic)',
+        x: 800,
+        y: 50,
+        fill: 'navy',
+        fontSize: 36,
+        width: 300,
+        draggable: true,
+      })
+      layer.add(text4)
+
+      const starCustom = new Konva.Star({
+        x: 900,
+        y: 350,
+        fill: 'orange',
+        outerRadius: 80,
+        innerRadius: 32,
+        stroke: 'blue',
+        draggable: true
+      })
+      layer.add(starCustom)
+
+
+      function eachFrame(frame) {
+        let newX = starCustom.x() + frame.timeDiff / 1000 * pps * direction
+        if (newX > stage.width() - star.outerRadius()) {
+          newX = stage.width() - star.outerRadius()
+          direction *= -1
+        }
+        starCustom.x(newX)
+      }
+
+      const anim = new Konva.Animation(eachFrame, layer)
+      const pps = 200
+      let direction = 1
+      anim.start()
     </script>
   </body>
 </html>
