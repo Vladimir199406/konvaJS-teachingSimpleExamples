@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/konva@9.2.0/konva.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Konva Simple Window drawing</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="container"></div>
+    <script>
+
+      //main part
+      const stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: 'container',
+      });
+
+      const staticLayer = new Konva.Layer()
+      const animatedLayer = new Konva.Layer() //only dynamic layers on top
+      stage.add(staticLayer, animatedLayer)
+
+      //BLOCK#5: important moments
+      const text5 = new Konva.Text({
+        text: 'BLOCK5: many elems',
+        x: 50,
+        y: 50,
+        fill: 'navy',
+        fontSize: 36,
+        width: 300,
+        draggable: true,
+      })
+      staticLayer.add(text5)
+
+      function manyStars() {
+        const star = new Konva.Star({
+          x: Math.random() * stage.width(),
+          y: Math.random() * stage.height(),
+          fill: 'yellow',
+          stroke: 'red',
+          outerRadius: 50,
+          innerRadius: 20,
+          draggable: true,
+          shadowColor: 'black',
+          shadowOffset: {x: 5, y: 5},
+          shadowBlur: 10,
+          shadowOpacity: 0.4
+        }).moveTo(staticLayer)
+        star.cache() //!important: binded with redrawing all the elems
+        star.clearCache()
+        star.fill('orange')
+        
+        star.on('dragstart', () => star.moveTo(animatedLayer))
+        star.on('dragend', () => star.moveTo(staticLayer))
+      }
+
+      for (let i = 0; i < 20; i++) {
+        manyStars()
+      }
+    </script>
+  </body>
+</html>
