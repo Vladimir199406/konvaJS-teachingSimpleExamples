@@ -117,7 +117,7 @@
       //BLOCK#2
       //text
       const text2 = new Konva.Text({
-        text: 'BLOCK2: Event listeners',
+        text: 'BLOCK2: Event listeners(click examples)',
         x: 50,
         y: 700,
         fill: 'navy',
@@ -165,6 +165,44 @@
           starEvent2.fill('yellow')
         }
       })
+
+      
+      //BLOCK#3
+      const text3 = new Konva.Text({
+        text: 'BLOCK3: Tween Animations',
+        x: 50,
+        y: 1050,
+        fill: 'navy',
+        fontSize: 36,
+        width: 300,
+        draggable: true,
+      })
+      layer.add(text3)
+
+      const starTween = new Konva.Star({
+        x: 240,
+        y: 1250,
+        fill: 'yellow',
+        outerRadius: 80,
+        innerRadius: 32,
+        stroke: 'blue',
+        draggable: true
+      })
+      layer.add(starTween)
+
+      const tween = new Konva.Tween({
+        node: starTween,
+        duration: 2, //seconds
+        x: 420,
+        opacity: 0,
+        rotation: -360,
+        // onFinish: () => {
+        //   tween.reverse()
+        // }
+        yoyo: true,
+        easing: Konva.Easings.EaseOut
+      })
+      tween.play()
     </script>
   </body>
 </html>
