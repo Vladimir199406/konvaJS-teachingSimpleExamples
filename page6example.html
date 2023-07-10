@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/konva@9.2.0/konva.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Konva Simple Window drawing</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="container"></div>
+    <script>
+      //main part
+      const stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: 'container',
+      });
+
+      const staticLayer = new Konva.Layer()
+      stage.add(staticLayer)
+
+      //BLOCK#6 
+      const text6 = new Konva.Text({
+        text: 'BLOCK6: custom element',
+        x: 50,
+        y: 50,
+        fill: 'navy',
+        fontSize: 36,
+        width: 300,
+        draggable: true,
+      })
+      staticLayer.add(text6)
+
+      const group = new Konva.Group({
+        x: 50,
+        y: 50,
+      }).moveTo(staticLayer)
+
+      const circle = new Konva.Circle({
+        radius: 100,
+        x: 300,
+        y: 300,
+        stroke: 'green',
+        strokeWidth: 8,
+      })
+
+      const eye1 = new Konva.Wedge({
+        radius: 20,
+        fill: 'green',
+        angle: 315,
+        rotation: 23,
+        x: 266,
+        y: 266,
+      })
+
+      const eye2 = eye1.clone({
+        x: 333
+      })
+
+      const mounth = new Konva.Line({
+        x: 260,
+        y: 340,
+        stroke: 'green',
+        strokeWidth: 8,
+        lineCap: 'round',
+        points: [0, 0, 40, 20, 80, 0],
+        tention: 0.66
+      }) 
+
+      group.add(circle, eye1, eye2, mounth)
+      group.draggable(true)
+      group.cache({
+        drawBorder: true,
+      })
+      staticLayer.batchDraw()
+
+    
+    </script>
+  </body>
+</html>
